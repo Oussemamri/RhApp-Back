@@ -24,7 +24,7 @@ export class AnnualGoalEntity {
   @Column({ type: "boolean", default: false })
   managerApproved: boolean;
 
-  @ManyToOne(() => UserEntity, (user) => user.annualGoals)
+  @ManyToOne(() => UserEntity, (user) => user.annualGoals,{onDelete:'CASCADE'})
   @JoinColumn({ name: "user_id" })
   user: UserEntity;
 }
