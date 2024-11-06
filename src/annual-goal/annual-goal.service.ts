@@ -70,11 +70,14 @@ export class AnnualGoalService {
   ): Promise<AnnualGoalEntity> {
     const goals = await this.annualGoalRepository.find({ where: { id: id } });
     console.log(goals);
-    const { description } = updateGoalDto;
+    const { description, status, employeeApproved, managerApproved } =
+      updateGoalDto;
     console.log("{status, description}", updateGoalDto);
     const goal = await this.annualGoalRepository.preload({
       id,
       description,
+      employeeApproved,
+      managerApproved,
     });
     console.log("goal ", goal);
     if (!goal) {
